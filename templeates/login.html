@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Secure Auth</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body {
+            background: linear-gradient(135deg, #0B0C10 0%, #1F2833 100%);
+            color: #C5C6C7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4);
+        }
+        h2 { text-align: center; color: #66FCF1; margin-bottom: 20px; font-weight: 600; }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; margin-bottom: 6px; font-size: 14px; color: #C5C6C7; }
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #45A29E;
+            border-radius: 10px;
+            color: #FFF;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        input:focus { outline: none; border-color: #66FCF1; box-shadow: 0 0 10px rgba(102, 252, 241, 0.3); }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #45A29E, #66FCF1);
+            color: #0B0C10;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        button:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(102, 252, 241, 0.3); }
+        .alert { padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 13px; text-align: center; }
+        .alert-danger { background: rgba(255, 76, 76, 0.15); color: #FF4C4C; border: 1px solid #FF4C4C; }
+        .alert-warning { background: rgba(241, 196, 15, 0.15); color: #F1C40F; border: 1px solid #F1C40F; }
+        .alert-success { background: rgba(46, 204, 113, 0.15); color: #2ECC71; border: 1px solid #2ECC71; }
+        .alert-info { background: rgba(52, 152, 219, 0.15); color: #3498DB; border: 1px solid #3498DB; }
+        .footer-text { text-align: center; margin-top: 20px; font-size: 13px; }
+        .footer-text a { color: #66FCF1; text-decoration: none; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="glass-panel">
+        <h2>🔒 Secure Login</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <div class="form-group">
+                <label>Username or Email</label>
+                <input type="text" name="username_or_email" placeholder="Enter username or email" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter password" required>
+            </div>
+            <button type="submit">Login 🔓</button>
+        </form>
+
+        <div class="footer-text">
+            Don't have an account? <a href="{{ url_for('register') }}">Register here</a>
+        </div>
+    </div>
+</body>
+</html>

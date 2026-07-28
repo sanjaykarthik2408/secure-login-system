@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Secure System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body {
+            background: linear-gradient(135deg, #0B0C10 0%, #1F2833 100%);
+            color: #C5C6C7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+        h1 { color: #66FCF1; margin-bottom: 10px; font-weight: 600; font-size: 26px; }
+        p { margin-bottom: 25px; font-size: 15px; }
+        .security-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(102, 252, 241, 0.2);
+            padding: 15px;
+            border-radius: 12px;
+        }
+        .card h4 { color: #2ECC71; font-size: 14px; margin-bottom: 5px; }
+        .card p { font-size: 12px; margin-bottom: 0; color: #A0A5AA; }
+        .logout-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(255, 76, 76, 0.2);
+            color: #FF4C4C;
+            border: 1px solid #FF4C4C;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .logout-btn:hover { background: #FF4C4C; color: #FFF; box-shadow: 0 0 15px rgba(255, 76, 76, 0.4); }
+    </style>
+</head>
+<body>
+    <div class="glass-panel">
+        <h1>👋 Welcome, {{ username }}!</h1>
+        <p>You have successfully passed the secure authentication flow.</p>
+
+        <div class="security-features">
+            <div class="card">
+                <h4>🔑 Password Hashing</h4>
+                <p>Bcrypt hashing with salt active.</p>
+            </div>
+            <div class="card">
+                <h4>🛡️ SQLi Protection</h4>
+                <p>SQLAlchemy ORM parameterized queries.</p>
+            </div>
+            <div class="card">
+                <h4>🔐 Active Session</h4>
+                <p>Server-side encrypted session tokens.</p>
+            </div>
+            <div class="card">
+                <h4>⚡ Input Validation</h4>
+                <p>Sanitized input data verification.</p>
+            </div>
+        </div>
+
+        <a href="{{ url_for('logout') }}" class="logout-btn">Logout 🚪</a>
+    </div>
+</body>
+</html>
